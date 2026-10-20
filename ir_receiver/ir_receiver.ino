@@ -1,5 +1,5 @@
 /*
-  ir_receiver.ino  -  capture half of the IR Swiss Knife firmware
+  ir_receiver.ino  -  capture half of the IRRemoteCloner firmware
 
   Role      : listens for one IR key press and reports it over serial.
   Board     : Uno/Nano (200 raw slots). Use 750 on Mega/ESP32 for AC remotes.

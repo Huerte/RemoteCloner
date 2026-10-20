@@ -1,5 +1,5 @@
 /*
-  ir_sender.ino  -  transmit half of the IR Swiss Knife firmware
+  ir_sender.ino  -  transmit half of the IRRemoteCloner firmware
 
   Role      : replays raw or decoded IR codes received over serial.
   Board     : Uno/Nano (200 raw slots). Use 750 on Mega/ESP32 for AC remotes.

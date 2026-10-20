@@ -448,7 +448,7 @@ class HomePage(Page):
         super().__init__(win)
         v = QVBoxLayout(self)
         pad(v)
-        v.addLayout(page_header("IR Swiss Knife", "Clone, organise, edit and replay infrared remotes."))
+        v.addLayout(page_header("IRRemoteCloner", "Clone, organise, edit and replay infrared remotes."))
         grid = QGridLayout()
         grid.setSpacing(16)
         cards = [("Clone remote", "Name a key, press it on the original remote and record the signal. "
@@ -1219,7 +1219,7 @@ class FirmwarePage(Page):
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("IR Swiss Knife")
+        self.setWindowTitle("IRRemoteCloner")
         self.resize(1120, 700)
         self.setMinimumSize(980, 600)
         self.store, self.bridge = Store(), Bridge()
@@ -1240,7 +1240,7 @@ class Main(QMainWindow):
         sv = QVBoxLayout(side)
         sv.setContentsMargins(0, 22, 0, 12)
         sv.setSpacing(14)
-        brand = QLabel("IR Swiss Knife")
+        brand = QLabel("IRRemoteCloner")
         brand.setObjectName("brand")
         sv.addWidget(brand)
         sv.addWidget(self.nav, 1)

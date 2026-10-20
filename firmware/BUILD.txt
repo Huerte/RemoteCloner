@@ -1,4 +1,4 @@
-Prebuilt firmware for IR Swiss Knife.
+Prebuilt firmware for IRRemoteCloner.
 
 Files are named <role>_<chip>.hex
   receiver_*  captures IR signals (sketch: arduino/ir_receiver/ir_receiver.ino, IR receiver output on D11)
