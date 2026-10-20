@@ -1,0 +1,10 @@
+Prebuilt firmware for IR Swiss Knife.
+
+Files are named <role>_<chip>.hex
+  receiver_*  captures IR signals (sketch: arduino/ir_receiver/ir_receiver.ino, IR receiver output on D11)
+  sender_*    transmits IR signals (sketch: arduino/ir_sender/ir_sender.ino, IR LED on D3)
+  *_atmega328p.hex  Arduino Uno and Nano, raw buffer 200
+  *_atmega2560.hex  Arduino Mega 2560, raw buffer 750
+
+Built with avr-gcc 7.3.0, Arduino AVR core 1.8.6 and IRremote 4.7.1 (commit c4ec014), F_CPU 16 MHz.
+The hex files are installed by the Set up board page in the app, which runs avrdude.
