@@ -8,3 +8,8 @@ Files are named <role>_<chip>.hex
 
 Built with avr-gcc 7.3.0, Arduino AVR core 1.8.6 and IRremote 4.7.1 (commit c4ec014), F_CPU 16 MHz.
 The hex files are installed by the Set up board page in the app, which runs avrdude.
+
+Firmware 1.1 adds the INFO command, build-time pins/baud (see app/boards.py) and ESP32/ESP8266 support.
+The AVR .hex files here are the original 1.0 builds (still compatible: the app falls back when INFO is missing).
+Rebuild everything, including ESP images, with:  python tools/build_firmware.py   (needs arduino-cli)
+firmware/manifest.json holds the SHA-256 of each image; the app checks it before flashing.

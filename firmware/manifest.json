@@ -1,0 +1,30 @@
+{
+  "generated": "2026-10-22",
+  "irremote": "4.7.1",
+  "files": {
+    "receiver_atmega2560": {
+      "file": "receiver_atmega2560.hex",
+      "sha256": "b65cb64af6fa82bbc2c0e7cba0b3d1d1390c2e320cbfcdb432d53b5df5752edf",
+      "bytes": 34264,
+      "fw": "1.0"
+    },
+    "receiver_atmega328p": {
+      "file": "receiver_atmega328p.hex",
+      "sha256": "cc0c5b01861640b73cd0acce62937c0c9bafa34a35fcbe111d9830729d2169fa",
+      "bytes": 31048,
+      "fw": "1.0"
+    },
+    "sender_atmega2560": {
+      "file": "sender_atmega2560.hex",
+      "sha256": "289fc1b49f8974ab80916acaae4a41c4d2b799cf8dbd86209bcb0e02200a743a",
+      "bytes": 28352,
+      "fw": "1.0"
+    },
+    "sender_atmega328p": {
+      "file": "sender_atmega328p.hex",
+      "sha256": "fdddcd26ed506425d7f71ec135841b9d62b0ee4cfa9d86a74932d271631a8e43",
+      "bytes": 26132,
+      "fw": "1.0"
+    }
+  }
+}

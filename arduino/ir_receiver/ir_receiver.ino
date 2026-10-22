@@ -2,13 +2,17 @@
   ir_receiver.ino  -  capture half of the IRRemoteCloner firmware
 
   Role      : listens for one IR key press and reports it over serial.
-  Board     : Uno/Nano (200 raw slots). Use 750 on Mega/ESP32 for AC remotes.
+  Boards    : AVR (Uno/Nano/Mega/Leonardo/Micro), ESP32 family, ESP8266.
   Library   : IRremote 4.x
-  Wiring    : IR receiver (VS1838B / TSOP38238) OUT -> D11
+  Wiring    : IR receiver (VS1838B / TSOP38238) OUT -> IR_RECEIVE_PIN (D11 on AVR;
+              see app/boards.py for the ESP pins, passed in by tools/build_firmware.py)
 
-  Serial protocol (115200 baud, newline terminated commands)
+  Build-time overrides (-D flags): RAW_BUFFER_LENGTH, IR_RECEIVE_PIN, SERIAL_BAUD, CHIP_NAME
+
+  Serial protocol (SERIAL_BAUD, default 115200, newline terminated commands)
     P  -> PONG RECEIVER
-    V  -> VER receiver 1.0
+    V  -> VER receiver 1.1
+    I  -> INFO fw=1.1 role=receiver chip=<chip> buf=<raw slots> baud=<baud> pin=<pin>
     L  -> OK learning       (then one capture is reported)
     C  -> OK cancelled
   Capture output
@@ -17,10 +21,21 @@
     ERR overflow
 */
 
+#define FW_VERSION "1.1"
 #ifndef RAW_BUFFER_LENGTH
-#define RAW_BUFFER_LENGTH 200      // the firmware build overrides this to 750 on Mega
+#define RAW_BUFFER_LENGTH 200      // the firmware build overrides this (750 on Mega/ESP32, 512 on ESP8266)
 #endif
+#ifndef IR_RECEIVE_PIN
 #define IR_RECEIVE_PIN 11
+#endif
+#ifndef SERIAL_BAUD
+#define SERIAL_BAUD 115200
+#endif
+#ifndef CHIP_NAME
+#define CHIP_NAME unknown
+#endif
+#define STR_(x) #x
+#define STR(x) STR_(x)
 #include <IRremote.hpp>
 
 static bool learning = false;
@@ -57,7 +72,15 @@ void printCapture() {
 void handleCommand(char c) {
   switch (c) {
     case 'P': Serial.println(F("PONG RECEIVER")); break;
-    case 'V': Serial.println(F("VER receiver 1.0")); break;
+    case 'V': Serial.println(F("VER receiver " FW_VERSION)); break;
+    case 'I':
+      Serial.print(F("INFO fw=" FW_VERSION " role=receiver chip=" STR(CHIP_NAME) " buf="));
+      Serial.print(RAW_BUFFER_LENGTH);
+      Serial.print(F(" baud="));
+      Serial.print(SERIAL_BAUD);
+      Serial.print(F(" pin="));
+      Serial.println(IR_RECEIVE_PIN);
+      break;
     case 'L':
       IrReceiver.resume();
       learning = true;
@@ -72,7 +95,7 @@ void handleCommand(char c) {
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(SERIAL_BAUD);
   IrReceiver.begin(IR_RECEIVE_PIN, DISABLE_LED_FEEDBACK);
 }
 
